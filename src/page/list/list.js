@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./list.scss";
-import { List, Checkbox, Modal,Input } from 'antd';
+import { List, Checkbox, Modal, Input } from 'antd';
 import { CloseCircleOutlined, FontSizeOutlined } from '@ant-design/icons';
 
 const ListBox = (props) => {
@@ -18,20 +18,20 @@ const ListBox = (props) => {
         setValue(props.str[index]);
         setIndex(index);
     }
-    const handleOk = () =>{
+    const handleOk = () => {
         setVisible(false);
         clickDele(index);
         props.getValue(value);
-       
+
     }
-    const handleCancel = ()=>{
+    const handleCancel = () => {
         setVisible(false)
     }
     //改变输入的值
-    const inputChange = (e)=>{
+    const inputChange = (e) => {
         setValue(e.target.value)
     }
-    
+
     return (
         <div className="listBox">
             <Modal
@@ -47,10 +47,10 @@ const ListBox = (props) => {
                 dataSource={props.str}
                 renderItem={(item, index) => (
                     <List.Item>
-                        <Checkbox className="check">
+                        <div className="check">
                             {item}
-                        </Checkbox>
-                        <FontSizeOutlined className="edit" onClick={()=>{clickEdit(index)}} />
+                        </div>
+                        <FontSizeOutlined className="edit" onClick={() => { clickEdit(index) }} />
                         <CloseCircleOutlined className="delete" onClick={() => { clickDele(index) }} />
                     </List.Item>
                 )}
