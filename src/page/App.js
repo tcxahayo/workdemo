@@ -1,12 +1,11 @@
 import React , { useState,useEffect}from 'react';
-import './app.scss';
+import './App.scss';
 import InputBox from './input/input';
 import ListBox from './list/list';
 import Login from './login/login';
 
 function App() {
   const [data, setData] = useState([]);
-  const [localData, setLocalData] = useState([]);
 
   //获取input值
   const getValue = (value)=> {
@@ -42,7 +41,7 @@ function App() {
       <div className="content">
         <div className="title">To-Do-List</div>
         <InputBox getValue={getValue}  />
-        <ListBox str={data} delData={delData} />
+        <ListBox str={data} delData={delData} getValue={getValue} />
       </div>
     </div>
   );
