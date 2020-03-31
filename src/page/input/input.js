@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { Input,Button } from 'antd';
+import { Input,Button,message } from 'antd';
 import "./input.scss";
 
 const  InputBox = (props) => {
@@ -10,8 +10,12 @@ const  InputBox = (props) => {
     }
     //确定添加
     const submit = () => {
-        props.getValue(value);
-        setValue();
+        if(value){
+            props.getValue(value);
+            setValue();
+        }else{
+            message.warning('不能为空',2)
+        }
     }
 
     return(

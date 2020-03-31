@@ -2,7 +2,6 @@ import React , { useState,useEffect}from 'react';
 import './App.scss';
 import InputBox from './input/input';
 import ListBox from './list/list';
-import Login from './login/login';
 
 function App() {
   const [data, setData] = useState([]);
@@ -22,19 +21,13 @@ function App() {
 
   //使用本地存储，使刷新的时候数据不会丢失
   useEffect(()=>{
-    if(data.length > 0){
-      localStorage.setItem('data',data)
-    }
-  },[data])
-  useEffect(()=>{
-    const data1 = localStorage.getItem('data');
-    if(data1){
-      setData((data)=>{
-        return data.concat(data1.split(','));
-      })
-    }
+    const data1 = localStorage.getItem('data') || '[]';
+      setData(JSON.parse(data1))
   },[])
-
+  useEffect(()=>{
+      localStorage.setItem('data',JSON.stringify(data))
+  },[data])
+ 
 
   return (
     <div className="App">
