@@ -11,9 +11,6 @@ function App() {
       return data.concat(value);
     })
   }
-  const demo = () =>{
-    console.log(data);
-  }
   const delData = (index) =>{
     let newData = [...data];
     newData.splice(index,1);
@@ -23,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <div className="content">
-        <div className="title" onClick={demo}>To-Do-List</div>
+        <div className="title">To-Do-List</div>
         <InputBox getValue={getValue}  />
         <ListBox str={data} delData={delData} />
       </div>

@@ -7,7 +7,6 @@ const ListBox =  (props) => {
     const [check, setCheck] = useState(false);
     //删除
     const clickDele = (index) =>{
-       console.log(index)
        props.delData(index);
     }
 
