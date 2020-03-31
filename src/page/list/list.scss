@@ -1,0 +1,15 @@
+.listBox{
+    width: 100%;
+  .listItem{
+      width: 95%;
+      word-break:break-all;
+      text-align: inherit;
+      .demo{
+          color: red;
+      }
+      .delete{
+        margin-left: 3px;
+    }
+  }
+
+}
