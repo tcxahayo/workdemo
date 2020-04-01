@@ -44,7 +44,7 @@ export default (state = defaultState, action) => {
     //点击确认修改
     if(action.type === HANDLE_OK){
         let newData = JSON.parse(JSON.stringify(state));
-        newData.data = [...newData.data, newData.value];
+        newData.data[newData.index] = newData.value;
         newData.visible =false;
         newData.value = '';
         return newData;
