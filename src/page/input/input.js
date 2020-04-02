@@ -3,16 +3,21 @@ import { Input,Button } from 'antd';
 import "./input.scss";
 import { connect } from 'react-redux';
 import { valueAction,addAction } from '../../store/actionCreate';
+import {bindActionCreators} from 'redux';
 
 class InputBox extends Component {
     constructor(props) {
         super(props);
     }
+    //获取输入的值
+    changeValue = (e)=>{
+        this.props.setValue(e.target.value)
+    }
     render(){
-        const {value, setValue, submit} = this.props;
+        const {value, submit} = this.props;
         return(
              <div className="inputBox"> 
-             <Input placeholder="请输入待办事项"  className="input" value={value} onChange={setValue} />
+             <Input placeholder="请输入待办事项"  className="input" value={value} onChange={this.changeValue} />
              <Button type="primary" shape="round" onClick={submit}  >确定</Button>
          </div>
         )
@@ -26,16 +31,10 @@ const mapStateToProps = (state) => {
   }
   const mapDispatchToProps = (dispatch) => {
     return {
-      //获取输入框的值
-      setValue: (e) => {
-        const action = valueAction(e.target.value)
-        dispatch(action)
-      },
-        //确定添加
-    submit: () => {
-        const action = addAction();
-        dispatch(action)
-      },
+    //获取输入框的值
+    setValue:bindActionCreators(valueAction,dispatch),
+    //确定添加
+    submit:bindActionCreators(addAction,dispatch)
     }
   }
 

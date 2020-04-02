@@ -4,6 +4,7 @@ import { List, Modal, Input } from 'antd';
 import { CloseCircleOutlined, FontSizeOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import { deleteAction, valueAction, editAction, okAction } from '../../store/actionCreate';
+import {bindActionCreators} from 'redux';
 
 class ListBox extends Component {
     constructor(props) {
@@ -32,8 +33,12 @@ class ListBox extends Component {
             visible:false
         })
     }
+    //获取修改输入值
+    changeValue = (e)=>{
+        this.props.setValue(e.target.value);
+    }
     render() {
-        const { data, delData , value, setValue } = this.props;
+        const { data, delData , value } = this.props;
         return (
             <div className="listBox">
                 <Modal
@@ -42,7 +47,7 @@ class ListBox extends Component {
                     onOk={this.handleSubmit}
                     onCancel={this.handleCancel}
                 >
-                    <Input onChange={setValue} value={value} />
+                    <Input onChange={this.changeValue} value={value} />
                 </Modal>
                 <List
                     className="listItem"
@@ -72,25 +77,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         //删除数据
-        delData: (index) => {
-            const action = deleteAction(index);
-            dispatch(action);
-        },
+        delData:bindActionCreators(deleteAction,dispatch),
         //获取输入框的值
-        setValue: (e) => {
-            const action = valueAction(e.target.value);
-            dispatch(action);
-        },
-        //点击修改
-        clickEdit: (index) => {
-            const action = editAction(index);
-            dispatch(action);
-        },
-        //修改框
-        handleOk: () => {
-            const action = okAction();
-            dispatch(action);
-        }
+        setValue:bindActionCreators(valueAction,dispatch),
+        clickEdit:bindActionCreators(editAction,dispatch),
+        //确定修改框
+        handleOk:bindActionCreators(okAction,dispatch)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ListBox);
