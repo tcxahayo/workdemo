@@ -1,10 +1,11 @@
-import {GET_VALUE , ADD_VALUE, DELETE, CLICK_EDIT , HANDLE_CANCEL, HANDLE_OK} from './actionType';
+import {GET_VALUE , ADD_VALUE, DELETE, CLICK_EDIT , HANDLE_CANCEL, HANDLE_OK, LOGIN} from './actionType';
 
 const defaultState = {      //默认数据
     data: ['星期一', '星期二'],
     value: '',
     visible: false,
-    index: ''
+    index: '',
+    username:''
 }
 export default (state = defaultState, action) => {
     //input输入值的改变
@@ -47,6 +48,12 @@ export default (state = defaultState, action) => {
         newData.data[newData.index] = newData.value;
         newData.visible =false;
         newData.value = '';
+        return newData;
+    }
+    //点击登陆
+    if(action.type === LOGIN){
+        let newData = JSON.parse(JSON.stringify(state));
+        newData.username = action.values.username;
         return newData;
     }
     return state

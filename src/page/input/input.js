@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input,Button,message } from 'antd';
+import { Input,Button } from 'antd';
 import "./input.scss";
 
 const  InputBox = (props) => {

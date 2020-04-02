@@ -1,7 +1,9 @@
 import React from 'react';
 import './login.scss';
-import { Form, Input, Button , message} from 'antd';
-import { Link, useHistory  } from "react-router-dom";
+import { Form, Input, Button } from 'antd';
+import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import {loginAction} from '../../store/actionCreate';
 
 //页面布局
 const layout = {
@@ -19,21 +21,10 @@ const tailLayout = {
     },
 };
 
-const Login = () => {
+const Login = (props) => {
+   const {onFinish} = props
 
-    let history = useHistory();
-
-//点击提交
-    const onFinish = values => {
-        console.log('Success:', values);
-        if(values.username === 'admin' && values.password === 'admin'){
-            history.push('/')
-        }else{
-            message.error('密码或用户名错误',1)
-        }
-    };
-
-//提交失败
+    //提交失败
     const onFinishFailed = errorInfo => {
         console.log('Failed:', errorInfo);
     };
@@ -85,4 +76,16 @@ const Login = () => {
         </div>
     )
 }
-export default Login;
+
+const mapDispatchToProps = (dispatch,props) => {
+    return {
+        //点击提交
+        onFinish: values => {
+          const action = loginAction(values);
+          dispatch(action);
+          props.history.push('/');
+        }
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Login);
