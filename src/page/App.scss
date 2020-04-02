@@ -20,5 +20,23 @@
         cursor: pointer;
       }
     }
+    .btu{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btu1{
+        background: #1785ff;
+        color: #fff;
+        padding: 5px 20px;
+        margin-right: 10px;
+        border-radius: 20px;
+      }
+    }
+    .btuContent{
+      min-height: 500px;
+      width: 100%;
+      margin-top: 30px;
+      // border: 1px solid red;
+    }
   }
 }

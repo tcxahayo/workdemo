@@ -1,9 +1,8 @@
-import {GET_VALUE , ADD_VALUE, DELETE, CLICK_EDIT , HANDLE_CANCEL, HANDLE_OK, LOGIN} from './actionType';
+import {GET_VALUE , ADD_VALUE, DELETE, CLICK_EDIT , HANDLE_OK, LOGIN} from './actionType';
 
 const defaultState = {      //默认数据
     data: ['星期一', '星期二'],
     value: '',
-    visible: false,
     index: '',
     username:''
 }
@@ -31,22 +30,13 @@ export default (state = defaultState, action) => {
     if(action.type === CLICK_EDIT){
         let newData = JSON.parse(JSON.stringify(state));
         newData.value = newData.data[action.index];
-        newData.visible = true;
         newData.index = action.index;
         return newData
     } 
-    //点击取消修改
-    if(action.type === HANDLE_CANCEL){
-        let newData = JSON.parse(JSON.stringify(state));
-        newData.visible =false;
-        newData.value = '';
-        return newData;
-    }
     //点击确认修改
     if(action.type === HANDLE_OK){
         let newData = JSON.parse(JSON.stringify(state));
         newData.data[newData.index] = newData.value;
-        newData.visible =false;
         newData.value = '';
         return newData;
     }
