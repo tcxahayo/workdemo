@@ -9,16 +9,12 @@ class InputBox extends Component {
     constructor(props) {
         super(props);
     }
-    //获取输入的值
-    changeValue = (e)=>{
-        this.props.setValue(e.target.value)
-    }
     render(){
-        const {value, submit} = this.props;
+        const {value, addAction, valueAction} = this.props;
         return(
              <div className="inputBox"> 
-             <Input placeholder="请输入待办事项"  className="input" value={value} onChange={this.changeValue} />
-             <Button type="primary" shape="round" onClick={submit}  >确定</Button>
+             <Input placeholder="请输入待办事项"  className="input" value={value} onChange={valueAction} />
+             <Button type="primary" shape="round" onClick={addAction}  >确定</Button>
          </div>
         )
     }
@@ -32,9 +28,9 @@ const mapStateToProps = (state) => {
   const mapDispatchToProps = (dispatch) => {
     return {
     //获取输入框的值
-    setValue:bindActionCreators(valueAction,dispatch),
+    valueAction:bindActionCreators(valueAction,dispatch),
     //确定添加
-    submit:bindActionCreators(addAction,dispatch)
+    addAction:bindActionCreators(addAction,dispatch)
     }
   }
 

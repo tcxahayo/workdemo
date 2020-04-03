@@ -7,3 +7,6 @@ Mock.mock(/api\/user/, 'get', {
             password:'123'
         }
 })
+Mock.mock(/api\/list/,'get',{
+    list:['早上','中午','晚上']
+})
