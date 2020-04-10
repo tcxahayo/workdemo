@@ -41,13 +41,13 @@ class ListBox extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        data: state.data,
-        value: state.value,
-        visible: state.visible
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         data: state.data,
+//         value: state.value,
+//         visible: state.visible
+//     }
+// }
 const mapDispatchToProps = (dispatch) => {
     return {
         //删除数据
@@ -62,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
         handleCancel:bindActionCreators(cancelAction,dispatch)
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ListBox);
+export default connect(state => state.inputReducer, mapDispatchToProps)(ListBox);

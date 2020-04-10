@@ -40,7 +40,7 @@ class App extends Component {
               <Route path='/listBox' component={ListBox} />
             </div>
             <div>
-              <ul>
+              {/* <ul>
                 {
                   list.map((item,index)=>{
                     return (
@@ -48,7 +48,7 @@ class App extends Component {
                     )
                   })
                 }
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>
