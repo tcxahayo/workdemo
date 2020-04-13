@@ -20,11 +20,6 @@ class InputBox extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     value: state.value
-//   }
-// }
 const mapDispatchToProps = (dispatch) => {
   return {
     //获取输入框的值
@@ -34,4 +29,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(state => state.inputReducer, mapDispatchToProps)(InputBox);
+export default connect(state => state.listRecuder, mapDispatchToProps)(InputBox);

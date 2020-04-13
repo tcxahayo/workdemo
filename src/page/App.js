@@ -6,6 +6,9 @@ import { Link, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import { getListAction } from '../store/actionCreate';
 import {bindActionCreators} from 'redux';
+import axios from 'axios';
+import '../mock/mock';
+import {request} from './http/api';
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +16,10 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.props.geAxios();
+    // request('api/list','').then((res)=>{console.log(res)});
+    // axios('api/list').then((res)=>{console.log(res)});
+    // request('http://localhost/index.php','').then((res)=>{console.log(res)});
+    // this.props.geAxios();
   }
 
   render() {
@@ -30,15 +36,17 @@ class App extends Component {
               ))
             }
           </div>
+            <InputBox />
+            <ListBox />
           <div>
-          <div className="btu">
+          {/* <div className="btu">
             <Link to='/inputBox' className="btu1">输入</Link>
             <Link to='/listBox' className="btu1">结果</Link>
           </div>
             <div className="btuContent">
               <Route path='/inputBox' component={InputBox} />
               <Route path='/listBox' component={ListBox} />
-            </div>
+            </div> */}
             <div>
               {/* <ul>
                 {

@@ -1,6 +1,7 @@
 import {GET_VALUE, ADD_VALUE, DELETE, CLICK_EDIT, HANDLE_CANCEL, HANDLE_OK, LOGIN, SETLIST } from './actionType';
 import axios from 'axios';
 import '../mock/mock';
+import {request} from '../page/http/api';
 
 //input输入框的值
 export const valueAction = (e)=> ({
@@ -49,12 +50,12 @@ export const setListAction = (values)=> ({
 
 //使用中间件，在actions里发请求,让逻辑都在redux里完成
 export const getListAction = ()=>{
-    return (dispatch,getState)=>{
-        axios.get('api/list').then((res)=>{
-            const data = res.data.list;
+    return (dispatch, getState)=>{
+        request('http://localhost/index.php','').then((res)=>{
+            const data = [res]
+            console.log(res)
             dispatch(setListAction(data))
         })
-        console.log(getState())
     }
 }
 

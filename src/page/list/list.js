@@ -3,12 +3,15 @@ import "./list.scss";
 import { List, Modal, Input } from 'antd';
 import { CloseCircleOutlined, FontSizeOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
-import { deleteAction, valueAction, editAction, okAction , cancelAction} from '../../store/actionCreate';
+import { deleteAction, valueAction, editAction, okAction , cancelAction, getListAction} from '../../store/actionCreate';
 import {bindActionCreators} from 'redux';
 
 class ListBox extends Component {
     constructor(props) {
         super(props);
+    }
+    componentDidMount(){
+        this.props.geAxios();
     }
     
     render() {
@@ -41,13 +44,6 @@ class ListBox extends Component {
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         data: state.data,
-//         value: state.value,
-//         visible: state.visible
-//     }
-// }
 const mapDispatchToProps = (dispatch) => {
     return {
         //删除数据
@@ -59,7 +55,9 @@ const mapDispatchToProps = (dispatch) => {
         //确定修改框
         handleOk:bindActionCreators(okAction,dispatch),
         //取消修改
-        handleCancel:bindActionCreators(cancelAction,dispatch)
+        handleCancel:bindActionCreators(cancelAction,dispatch),
+        //获取初始化数据
+        geAxios:bindActionCreators(getListAction,dispatch)
     }
 }
-export default connect(state => state.inputReducer, mapDispatchToProps)(ListBox);
+export default connect(state => state.listRecuder, mapDispatchToProps)(ListBox);

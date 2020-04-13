@@ -1,4 +1,3 @@
-import { GET_VALUE, ADD_VALUE, DELETE, CLICK_EDIT, HANDLE_OK, LOGIN, SETLIST, HANDLE_CANCEL } from './actionType';
 
 import { combineReducers } from 'redux';
 import inputReducer from '../page/input/reducer';
