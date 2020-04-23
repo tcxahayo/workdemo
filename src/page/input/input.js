@@ -4,6 +4,7 @@ import "./input.scss";
 import { connect } from 'react-redux';
 import { valueAction, addAction } from '../../store/actionCreate';
 import { bindActionCreators } from 'redux';
+import {request} from '../http/api';
 
 class InputBox extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class InputBox extends Component {
       <div className="inputBox">
         <Input placeholder="请输入待办事项" className="input" value={value} onChange={valueAction} />
         <Button type="primary" shape="round" onClick={addAction}  >确定</Button>
+        {/* <Button onClick={this.demo}>ok</Button> */}
       </div>
     )
   }

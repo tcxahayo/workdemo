@@ -7,7 +7,8 @@ const defaultState = {      //默认数据
     index: '',
     username: '',
     visible: false,
-    list: []
+    list: [],
+    id:''
 }
 
 
@@ -16,18 +17,13 @@ export default (state = defaultState, action) => {
         //初始化获取数据库的值
         case SETLIST:{
             console.log(action)
-            let newData = Object.assign({}, state, { data: action.values });
+            let newData = Object.assign({}, state, { data: action.values, value:'',visible:false});
             console.log(newData)
             return newData
         }
           //input输入值的改变
           case GET_VALUE: {
             let newData = Object.assign({}, state, { value: action.value });
-            return newData
-        }
-        //点击提交
-        case ADD_VALUE: {
-            let newData = Object.assign({}, state, { data: [...state.data, state.value], value: '' });
             return newData
         }
         //  点击删除
@@ -38,7 +34,7 @@ export default (state = defaultState, action) => {
         }
         //点击修改按钮
         case CLICK_EDIT: {
-            let newData = Object.assign({}, state, { value: state.data[action.index], index: action.index, visible: true });
+            let newData = Object.assign({}, state, { value: state.data[action.index].content, index: action.index, visible: true , id:action.id});
             return newData
         }
         //点击确认修改
@@ -47,6 +43,11 @@ export default (state = defaultState, action) => {
             newData.data[newData.index] = newData.value;
             newData.value = '';
             newData.visible = false;
+            return newData;
+        }
+        //点击取消
+        case HANDLE_CANCEL:{
+            let newData = Object.assign({},state,{visible:false});
             return newData;
         }
         default:

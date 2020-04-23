@@ -14,7 +14,7 @@ export const defaultState = {      //默认数据
 
 
 const reducer = combineReducers({
-    inputReducer,
+    // inputReducer,
     listRecuder
 })
 

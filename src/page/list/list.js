@@ -32,10 +32,10 @@ class ListBox extends Component {
                     renderItem={(item, index) => (
                         <List.Item>
                             <div className="check">
-                                {item}
+                                {item.content}
                             </div>
-                            <FontSizeOutlined className="edit" onClick={clickEdit.bind(this, index)} />
-                            <CloseCircleOutlined className="delete" onClick={delData.bind(this, index)} />
+                            <FontSizeOutlined className="edit" onClick={clickEdit.bind(this, index, item.id)} />
+                            <CloseCircleOutlined className="delete" onClick={delData.bind(this, item.id)} />
                         </List.Item>
                     )}
                 />

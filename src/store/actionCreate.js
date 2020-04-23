@@ -8,34 +8,43 @@ export const valueAction = (e)=> ({
     type:GET_VALUE,
     value:e.target.value
 })
-//在input的内容后面加上username
-// export const valueAction = (e)=>{
-//     return (dispatch,getState)=> {
-//         dispatch({type:GET_VALUE,value:e.target.value + '' + getState().username})
-//     }
-// }
-//确定添加
-export const addAction = ()=> ({
-    type:ADD_VALUE
-})
-//删除
-export const deleteAction = (index)=> ({
-    type:DELETE,
-    index
-})
+
+export const addAction = ()=> {
+    return (dispatch,getState)=>{
+        request('http://localhost/index.php',{type:'add',values:getState().listRecuder.value},'POST').then((res)=>{
+            console.log(res);
+            dispatch(getListAction())
+            dispatch({type:ADD_VALUE})
+        })
+    }
+}
+export const deleteAction = (id)=>{
+    return (dispatch,getState)=>{
+        console.log(id)
+        request('http://localhost/index.php',{type:'delete', id:id},'POST').then((res)=>{
+            console.log(res)
+            dispatch(getListAction())
+        })
+    }
+}
 //点击修改按钮
-export const editAction = (index) => ({
+export const editAction = (index,id) => ({
     type:CLICK_EDIT,
-    index 
+    index,
+    id 
 })
 //点击取消
 export const cancelAction = ()=> ({
     type:HANDLE_CANCEL
 })
-//点击确定修改
-export const okAction = ()=> ({
-    type:HANDLE_OK
-})
+export const okAction = ()=>{
+    return (dispatch,getState)=>{
+        request('http://localhost/index.php',{type:'edit',values:getState().listRecuder.value,id:getState().listRecuder.id}, 'POST').then((res)=>{
+            console.log(res)
+            dispatch(getListAction())
+        })
+    }
+}
 //点击登陆
 export const loginAction = (values)=>({
     type:LOGIN,
@@ -51,10 +60,9 @@ export const setListAction = (values)=> ({
 //使用中间件，在actions里发请求,让逻辑都在redux里完成
 export const getListAction = ()=>{
     return (dispatch, getState)=>{
-        request('http://localhost/index.php','').then((res)=>{
-            const data = [res]
+        request('http://localhost/index.php',{type:'all'},'GET').then((res)=>{
             console.log(res)
-            dispatch(setListAction(data))
+            dispatch(setListAction(res))
         })
     }
 }
